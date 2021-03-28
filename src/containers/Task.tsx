@@ -410,7 +410,7 @@ export const Task = () => {
         nodeId={i.ID.toString()}
         label={
           <>
-            <ListItem>
+            <ListItem component="div">
               <ListItemIcon>
                 <Checkbox
                   color={i?.Status === 'Complete' ? `primary` : `secondary`}
@@ -461,6 +461,7 @@ export const Task = () => {
                   </>
                 }
               />
+              <>
               <ListItemSecondaryAction>
                 <IconButton
                   edge="end"
@@ -496,14 +497,14 @@ export const Task = () => {
                 >
                   <Delete fontSize="small" />
                 </IconButton>
-              </ListItemSecondaryAction>
+              </ListItemSecondaryAction></>
             </ListItem>
             <Divider />
           </>
         }
         onLabelClick={(e) => e.stopPropagation()}
       >
-        {Array.isArray(i?.Child) && i.Child.map((j: any) => renderTreeList(j))}
+        {i?.Child?.length > 0 && i.Child.map((j: any) => renderTreeList(j))}
       </TreeItem>
     );
   };
